@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> <!-- This is an A11y Change -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Budget</title>
-    <meta name="description" content="A free personal budger app">
-    <meta name="keywords" content="app free budget finance">
+    
+    <!-- This is an SEO Change -->
+    <meta name="description" content="Manage your personal budget efficiently with our free budgeting app. Stay on track, receive alerts, and plan your finances with ease.">
+    
+    <!-- This is an SEO Change -->
+    <meta name="keywords" content="budget, finance, personal finance, money management, free budgeting app">
+    
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="main.css">
 </head>
@@ -13,7 +18,8 @@
 
 <a href="#main" class="skip">Skip to content</a>
 
-    <nav>
+    <!-- This is an A11y Change -->
+    <nav aria-label="Main Navigation">
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/about.html">About</a></li>
@@ -22,17 +28,23 @@
         </ul>
     </nav>
 
-    <div class="hero">
+    <!-- This is a Semantic HTML Change -->
+    <header class="hero">
         <h1>Personal Budget</h1>
         <h2>A personal-budget management app</h2>
-    </div>
+    </header>
 
     <main class="center" id="main">
 
-        <div class="page-area">
+        <!-- This is an SEO Change -->
+        <h1>Manage Your Budget Effectively</h1>
+
+        <!-- This is a Semantic HTML Change -->
+        <section class="page-area">
 
             <article>
-                <h1>Stay on track</h1>
+                <!-- This is an A11y Change -->
+                <h1 role="heading">Stay on track</h1>
                 <p>
                     Do you know where you are spending your money? If you really stop to track it down,
                     you would get surprised! Proper budget management depends on real data... and this
@@ -41,68 +53,46 @@
             </article>
     
             <article>
-                <h1>Alerts</h1>
+                <h1 role="heading">Alerts</h1>
                 <p>
                     What if your clothing budget ended? You will get an alert. The goal is to never go over the budget.
                 </p>
             </article>
     
             <article>
-                <h1>Results</h1>
+                <h1 role="heading">Results</h1>
                 <p>
                     People who stick to a financial plan, budgeting every expense, get out of debt faster!
-                    Also, they to live happier lives... since they expend without guilt or fear... 
+                    Also, they live happier lives... since they spend without guilt or fear... 
                     because they know it is all good and accounted for.
                 </p>
             </article>
     
             <article>
-                <h1>Free</h1>
+                <h1 role="heading">Free</h1>
                 <p>
                     This app is free!!! And you are the only one holding your data!
                 </p>
             </article>
     
             <article>
-                <h1>Stay on track</h1>
+                <h1 role="heading">Chart</h1>
                 <p>
-                    Do you know where you are spending your money? If you really stop to track it down,
-                    you would get surprised! Proper budget management depends on real data... and this
-                    app will help you with that!
-                </p>
-            </article>
-    
-            <article>
-                <h1>Alerts</h1>
-                <p>
-                    What if your clothing budget ended? You will get an alert. The goal is to never go over the budget.
-                </p>
-            </article>
-    
-            <article>
-                <h1>Results</h1>
-                <p>
-                    People who stick to a financial plan, budgeting every expense, get out of debt faster!
-                    Also, they to live happier lives... since they expend without guilt or fear... 
-                    because they know it is all good and accounted for.
-                </p>
-            </article>
-    
-            <article>
-                <h1>Chart</h1>
-                <p>
-                    <canvas id="myChart" width="400" height="400"></canvas>
+                    <!-- This is an SEO Change -->
+                    <canvas id="myChart" width="400" height="400" aria-label="Budget distribution chart" role="img"></canvas>
                 </p>
             </article>
 
-        </div>
+        </section>
 
     </main>
 
+    <!-- This is a Semantic HTML Change -->
     <footer class="bottom">
-        <div class="center">
-            All rights reserved &copy; Fabio Nolasco
-        </div>
+        <!-- This is a Semantic HTML Change -->
+        <section class="center">
+            <p>All rights reserved &copy; Fabio Nolasco</p>
+        </section>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg==" crossorigin="anonymous"></script>
