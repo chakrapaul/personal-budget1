@@ -4,118 +4,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Budget</title>
-
-    <!-- This is an SEO Change -->
-    <meta name="description" content="Track and manage your personal budget with this easy-to-use app. Free, secure, and efficient budgeting tool to stay on top of your finances.">
-
-    <!-- This is an SEO Change -->
-    <meta name="keywords" content="personal budget, finance management, budgeting tool, expenses tracker, money management, free app">
-
-    <!-- This is an SEO Change -->
+    <meta name="description" content="Effortlessly track and manage your personal finances with this sleek and modern budget app.">
+    <meta name="keywords" content="budget planner, expense tracker, financial management, savings, money control">
     <meta name="author" content="Fabio Nolasco">
-
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="main.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f7f6;
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            color: #ffffff;
+            text-align: center;
         }
 
         header.hero {
-            background-color: #3498db;
-            color: white;
-            text-align: center;
-            padding: 50px 20px;
-            border-bottom: 5px solid #2980b9;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 60px 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
         }
 
         header.hero h1 {
-            font-size: 3em;
+            font-size: 3.5em;
+            font-weight: bold;
             margin: 0;
         }
 
         header.hero h2 {
-            font-size: 1.5em;
-            margin: 10px 0 0;
+            font-size: 1.6em;
+            font-weight: 300;
         }
 
         nav {
-            background-color: #2c3e50;
+            background: rgba(255, 255, 255, 0.2);
             padding: 15px;
         }
 
         nav a {
-            color: white;
-            margin-right: 20px;
+            color: #fff;
+            margin: 0 15px;
             text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
         nav a:hover {
             text-decoration: underline;
+            color: #f1c40f;
         }
 
         main.center {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .page-area {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
         .page-area article {
-            background-color: #ecf0f1;
+            background: rgba(255, 255, 255, 0.15);
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .page-area article:hover {
+            transform: translateY(-5px);
         }
 
         .page-area article h1 {
             font-size: 2em;
-            color: #2980b9;
+            color: #f1c40f;
         }
 
         .bottom {
-            background-color: #34495e;
-            color: white;
-            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
             padding: 20px;
-            margin-top: 40px;
+            margin-top: 50px;
         }
 
         .skip {
             position: absolute;
             top: 10px;
             left: 10px;
-            background-color: #2980b9;
-            color: white;
+            background: #f1c40f;
+            color: #000;
             padding: 10px;
             text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
         }
 
         .skip:focus {
             outline: none;
-            background-color: #1f6d99;
+            background: #d4ac0d;
         }
 
-        .center p {
-            font-size: 1.1em;
-            color: #333;
-        }
     </style>
 </head>
 <body>
 
 <a href="#main" class="skip">Skip to content</a>
 
-<!-- This is an A11y Change -->
 <nav aria-label="Main Navigation">
     <ul>
         <li><a href="/">Home</a></li>
@@ -125,71 +123,44 @@
     </ul>
 </nav>
 
-<!-- This is a Semantic HTML Change -->
 <header class="hero">
     <h1>Personal Budget</h1>
-    <h2>A personal-budget management app</h2>
+    <h2>Take control of your financial future</h2>
 </header>
 
 <main class="center" id="main">
-
-    <!-- This is an SEO Change -->
-    <h1>Manage Your Budget Effectively</h1>
-
-    <!-- This is a Semantic HTML Change -->
+    <h1>Master Your Finances</h1>
     <section class="page-area">
-
         <article>
-            <!-- This is an A11y Change -->
             <h1 role="heading">Stay on track</h1>
-            <p>
-                Do you know where you are spending your money? If you really stop to track it down,
-                you would get surprised! Proper budget management depends on real data... and this
-                app will help you with that!
-            </p>
+            <p>Keep a close eye on your spending habits and make smarter financial choices.</p>
         </article>
-
         <article>
             <h1 role="heading">Alerts</h1>
-            <p>
-                What if your clothing budget ended? You will get an alert. The goal is to never go over the budget.
-            </p>
+            <p>Receive notifications when you're about to exceed your budget.</p>
         </article>
-
         <article>
             <h1 role="heading">Results</h1>
-            <p>
-                People who stick to a financial plan, budgeting every expense, get out of debt faster!
-                Also, they live happier lives... since they spend without guilt or fear... 
-                because they know it is all good and accounted for.
-            </p>
+            <p>Budgeting leads to financial freedom and a stress-free life.</p>
         </article>
-
-        <article>
-            <h1 role="heading">Free</h1>
-            <p>
-                This app is free!!! And you are the only one holding your data!
-            </p>
-        </article>
-
         <article>
             <h1 role="heading">Chart</h1>
             <p>
-                <!-- This is an SEO Change -->
                 <canvas id="myChart" width="400" height="400" aria-label="Budget distribution chart" role="img"></canvas>
             </p>
         </article>
-
     </section>
-
 </main>
 
-<!-- This is a Semantic HTML Change -->
 <footer class="bottom">
     <section class="center">
-        <p>All rights reserved &copy; Fabio Nolasco</p>
+        <p>&copy; 2025 Fabio Nolasco. All rights reserved.</p>
     </section>
 </footer>
+
+</body>
+</html>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
@@ -231,6 +202,48 @@
 
     getBudget();
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    var dataSource = {
+        datasets:[
+            {
+            data:[45,465,87],
+            backgroundColor:[
+            '#FF0000',
+            '#0000FF',
+            '#00FF00',
+            
+        ],
+     }
+    ],
+    labels:[
+        'Eat Out',
+        'Rent',
+        'Groceries'
+    ]
+    };
 
+    function createChart(){
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var myPieChart = new Chart(ctx,{
+            type:'pie',
+            data:dataSource
+        });
+    }
+
+    function getBudget(){
+        axios.get('/budget')
+        .then(function (res) {
+            console.log(res);
+            for(var i=0;i<res.data.myBudget.length;i++){
+                dataSource.datasets[0].data[i]=res.data.myBudget[i].budget;
+                dataSource.labels[i] = res.data.myBudget[i].title;
+            }
+            createChart();
+        });
+    }
+    getBudget();
+</script>
 </body>
 </html>
