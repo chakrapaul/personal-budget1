@@ -9,6 +9,7 @@
     <meta name="author" content="Fabio Nolasco">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="main.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -150,6 +151,8 @@
             </p>
         </article>
     </section>
+    <div id="d3-chart"></div>
+
 </main>
 
 <footer class="bottom">
@@ -162,8 +165,103 @@
 </html>
 
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+
+<!--d3js-->
+<script>
+    var dataSource = {
+        datasets: [
+            {
+                data: [],
+                backgroundColor: [
+                    '#f25da3', '#3498db', '#e67e22', '#4CAF50', '#6c757d', '#ffcc00', '#90ee90',
+                ]
+            }
+        ],
+        labels: []
+    };
+
+    function createChart() {
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: dataSource
+        });
+    }
+
+    function createD3Chart(data) {
+        // Set up the width, height, and margin for the D3 chart
+        var margin = { top: 20, right: 30, bottom: 40, left: 40 },
+            width = 600 - margin.left - margin.right,
+            height = 400 - margin.top - margin.bottom;
+
+        // Create the SVG container
+        var svg = d3.select("#d3-chart")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                  .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // Set up the x and y scales
+        var x = d3.scaleBand()
+                  .domain(data.map(function(d) { return d.title || d.name; }))  // Use "title" for x-axis labels
+                  .range([0, width])
+                  .padding(0.1);
+
+        var y = d3.scaleLinear()
+                  .domain([0, d3.max(data, function(d) { return d.budget || d.amount; })])  // Use "budget" for bar heights
+                  .nice()
+                  .range([height, 0]);
+
+        // Add x-axis
+        svg.append("g")
+           .selectAll(".bar")
+           .data(data)
+           .enter().append("rect")
+           .attr("class", "bar")
+           .attr("x", function(d) { return x(d.title || d.name); })
+           .attr("y", function(d) { return y(d.budget || d.amount); })
+           .attr("width", x.bandwidth())
+           .attr("height", function(d) { return height - y(d.budget || d.amount);})
+           .attr("fill", "#3498db");
+
+        // Add x-axis labels
+        svg.append("g")
+           .attr("class", "x-axis")
+           .attr("transform", "translate(0," + height + ")")
+           .call(d3.axisBottom(x));
+
+        // Add y-axis labels
+        svg.append("g")
+           .attr("class", "y-axis")
+           .call(d3.axisLeft(y));
+    }
+
+    function getBudget() {
+        axios.get('http://localhost:3000/budget')
+        .then(function (res) {
+            console.log(res);  // Log the response to check if all data is correct
+
+            // For Chart.js Pie chart
+            for (var i = 0; i < res.data.myBudget.length; i++) {
+                dataSource.datasets[0].data[i] = res.data.myBudget[i].budget;
+                dataSource.labels[i] = res.data.myBudget[i].title;
+            }
+            createChart();  // Create the Chart.js pie chart
+
+            // For D3.js Bar chart
+            createD3Chart(res.data.myBudget);  // Create the D3 bar chart with data
+        })
+        .catch(function (error) {
+            console.error('Error loading budget data:', error);
+        });
+    }
+
+    getBudget();
+</script>
 
 <script>
     var dataSource = {
