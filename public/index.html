@@ -210,9 +210,13 @@
             {
             data:[],
             backgroundColor:[
-            '#FF0000',
-            '#0000FF',
-            '#00FF00',
+            '#f25da3',
+            '#3498db', 
+            '#e67e22' ,
+            '#4CAF50',
+            '#6c757d',
+            '#ffcc00' ,
+            '#90ee90' ,
             
         ],
      }
@@ -233,8 +237,8 @@
         .then(function (res) {
             console.log(res);
             for(var i=0;i<res.data.myBudget.length;i++){
-                dataSource.datasets[0].data[i]=res.data.myBudget[i].budget;
-                dataSource.labels[i] = res.data.myBudget[i].title;
+                dataSource.datasets[0].data[i]=res.data.myBudget[i].budget || res.data.myBudget[i].amount;
+                dataSource.labels[i] = res.data.myBudget[i].title || res.data.myBudget[i].name;
             }
             createChart();
         });
