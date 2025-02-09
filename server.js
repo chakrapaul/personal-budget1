@@ -4,34 +4,46 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const port = 3000;
+const fs = require("fs");
 
 // app.use(cors());
+
+// const budget = {
+//     myBudget: [
+//         {
+//             title: 'Eat out',
+//             budget: 50
+//         },
+//         {
+//             title: 'Rent',
+//             budget: 500
+//         },
+//         {
+//             title: 'Grocery',
+//             budget: 110
+//         },
+//     ]
+// };
+
 app.use('/',express.static('public'))
-const budget = {
-    myBudget: [
-        {
-            title: 'Eat out',
-            budget: 50
-        },
-        {
-            title: 'Rent',
-            budget: 500
-        },
-        {
-            title: 'Grocery',
-            budget: 200
-        },
-    ]
-};
 
-
+app.get("/budget", (req, res) => {
+    fs.readFile("budget-data.json", "utf8", (err, data) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send("Error loading budget data");
+            return;
+        }
+        res.json(JSON.parse(data));
+    });
+});
 
 app.get('/hello', (req, res) => {
     res.send('Hello world');
 });
-app.get('/budget', (req, res) => {
-    res.json(budget);
-});
+// app.get('/budget', (req, res) => {
+//     res.json(budget);
+// });
 
 app.listen(port, () => {
     console.log(`API served at http://localhost:${port}`);
