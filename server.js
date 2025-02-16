@@ -49,15 +49,15 @@ const app = express();
 const port = 3000;
 
 // Use CORS if needed
-// app.use(cors());
+app.use(cors());
 
 // Serve static files
-app.use('/', express.static('public'));
+// app.use('/', express.static('public'));
 
 // Endpoint to get budget data
-app.get('/hello', (req, res) => {
-    res.send('Hello world');
-});
+// app.get('/hello', (req, res) => {
+//     res.send('Hello world');
+// });
 
 app.get('/budget', (req, res) => {
     // Read the budget data from the JSON file
