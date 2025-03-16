@@ -1,76 +1,59 @@
-// Budget API
-
-// const express = require('express');
-// const cors = require('cors');
-// const app = express();
-// const port = 3000;
-
-
-// app.use(cors());
-
-// const budget = {
-//     myBudget: [
-//         {
-//             title: 'Eat out',
-//             budget: 50
-//         },
-//         {
-//             title: 'Rent',
-//             budget: 500
-//         },
-//         {
-//             title: 'Grocery',
-//             budget: 110
-//         },
-//     ]
-// };
-
-// app.use('/',express.static('public'))
-
-
-
-// app.get('/hello', (req, res) => {
-//     res.send('Hello world');
-// });
-// app.get('/budget', (req, res) => {
-//     res.json(budget);
-// });
-
-// app.listen(port, () => {
-//     console.log(`API served at http://localhost:${port}`);
-// });
-// Budget API
-
 const express = require('express');
-const cors = require('cors');
-const fs = require('fs');
-const path = require('path');
 const app = express();
 const port = 3000;
-
-// Use CORS if needed
+const fs = require('fs');
+const mongoose = require("mongoose");
+const Budget = require("./Budget");
+const cors = require("cors");
+app.use(express.json());
 app.use(cors());
 
-// Serve static files
-// app.use('/', express.static('public'));
+app.use('/',express.static('public'));
 
-// Endpoint to get budget data
-// app.get('/hello', (req, res) => {
-//     res.send('Hello world');
-// });
+mongoose
+  .connect("mongodb://127.0.0.1:27017/myBudgetDB", { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
-app.get('/budget', (req, res) => {
-    // Read the budget data from the JSON file
-    fs.readFile(path.join(__dirname, 'budget-data.json'), 'utf8', (err, data) => {
-        if (err) {
-            res.status(500).json({ error: 'Failed to read budget data' });
-        } else {
-            res.json(JSON.parse(data));
-        }
-    });
+
+app.get('/hello',(req,res) =>{
+    res.send("Hello World!");
 });
 
-// Start the server
-app.listen(port, () => {
-    console.log(`API served at http://localhost:${port}`);
+app.get("/budget", async (req, res) => {
+    try {
+      const budgetData = await Budget.find();
+      res.json(budgetData);
+    } catch (err) {
+      console.error("Error fetching budget data:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
+  app.post("/budget", async (req, res) => {
+    try {
+        const { myBudget } = req.body;
+
+        if (!Array.isArray(myBudget)) {
+            return res.status(400).json({ error: "Invalid format" });
+        }
+
+        const newBudgets = myBudget.map(item => {
+            if (!item.title || !item.budget || !item.color) {
+                throw new Error("All fields are required for each entry.");
+            }
+            return { title: item.title, value: item.budget, color: item.color };
+        });
+
+        // Insert multiple documents at once
+        const insertedBudgets = await Budget.insertMany(newBudgets);
+        res.status(201).json(insertedBudgets);
+    } catch (err) {
+        console.error("Error adding budget data:", err);
+        res.status(400).json({ error: err.message });
+    }
+});
+
+app.listen(port, ()=>{
+    console.log(`Listening at http://localhost:${port}`);
 });
